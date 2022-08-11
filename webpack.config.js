@@ -1,7 +1,5 @@
-/* eslint-disable */
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
-
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -17,11 +15,11 @@ module.exports = {
   ],
   module: {
     rules: [
-        {
-          test: /\.js$/,
-          exclude: /(node_modules)/,
-          use: ['babel-loader']
-        }
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: ['babel-loader']
+      }
     ]
   }
 };
