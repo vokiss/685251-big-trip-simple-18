@@ -7,6 +7,4 @@ const sortElement = document.querySelector('.trip-events');
 const boardPresenter = new BoardPresenter();
 
 render(new FilterView(), stripFiltersElement);
-
 boardPresenter.init(sortElement);
-
