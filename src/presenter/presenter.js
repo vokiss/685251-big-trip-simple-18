@@ -8,16 +8,18 @@ import EmptyListView from '../view/empty-list-view.js';
 export default class BoardPresenter {
   emptyListComponent = new EmptyListView();
 
-  init = (boardContainer) => {
+  init = (boardContainer, eventsModel) => {
     this.boardContainer = boardContainer;
+    this.eventsModel = eventsModel;
+    this.eventList = [...this.eventsModel.getEvents()];
 
     render(new SortView(), this.boardContainer);
     render(this.emptyListComponent, this.boardContainer);
     render(new editPointView(), this.emptyListComponent.getElement());
     render(new addPointView(), this.emptyListComponent.getElement());
 
-    for (let i = 0; i < 3; i++) {
-      render(new tripEventView(), this.emptyListComponent.getElement());
+    for (let i = 0; i < this.eventList.length; i++) {
+      render(new tripEventView(this.eventList[i]), this.emptyListComponent.getElement());
     }
 
   };
