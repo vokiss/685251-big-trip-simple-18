@@ -2,11 +2,8 @@ import {createElement} from '../render.js';
 import { humanizeTaskDueDate } from '../util.js';
 
 const tripEventElement = (event) => {
-  const {name, type, dateFrom, dateTo} = event.destination;
+  const {name, type, dateFrom} = event.destination;
   const dateFromH = dateFrom !== null
-    ? humanizeTaskDueDate(dateFrom)
-    : '';
-  const dateToH = dateTo !== null
     ? humanizeTaskDueDate(dateFrom)
     : '';
   return (
