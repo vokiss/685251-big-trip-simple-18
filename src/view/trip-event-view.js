@@ -1,24 +1,37 @@
 import {createElement} from '../render.js';
 import { humanizeTaskDueDate } from '../util.js';
 
+const createOfferTemplate = (title, price) =>
+  `
+     <li class="event__offer">
+         <span class="event__offer-title">${title}</span>
+         +€&nbsp;
+         <span class="event__offer-price">${price}</span>
+      </li>
+`;
+
 const tripEventElement = (event) => {
-  const {name, type, dateFrom} = event.destination;
-  const dateFromH = dateFrom !== null
-    ? humanizeTaskDueDate(dateFrom)
-    : '';
+  const {name, type, dateFrom, dateTo} = event.destination;
+  const {title, price} = event.offerByType.offer;
+  const dateFromMMMDD = humanizeTaskDueDate('MMM DD', dateFrom);
+  const dateFromYYYYMMDD = humanizeTaskDueDate('YYYY-MM-DD',dateFrom);
+  const dateToYYYYMMDD = humanizeTaskDueDate('YYYY-MM-DD',dateTo);
+  const dateFromHHMM = humanizeTaskDueDate('HH:MM',dateFrom);
+  const dateToHHMM = humanizeTaskDueDate('HH:MM',dateTo);
+
   return (
     `<li class="trip-events__item">
     <div class="event">
-      <time class="event__date" datetime="2019-03-20">${dateFromH}</time>
+      <time class="event__date" datetime="${dateFromYYYYMMDD}">${dateFromMMMDD}</time>
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
       </div>
       <h3 class="event__title">${type} ${name}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="2019-03-20T11:15">11:15</time>
+          <time class="event__start-time" datetime="${dateFromYYYYMMDD}T${dateFromHHMM}">${dateFromHHMM}</time>
           &mdash;
-          <time class="event__end-time" datetime="2019-03-20T12:15">12:15</time>
+          <time class="event__end-time" datetime="${dateToYYYYMMDD}T${dateToHHMM}">${dateToHHMM}</time>
         </p>
       </div>
       <p class="event__price">
@@ -26,9 +39,7 @@ const tripEventElement = (event) => {
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
-        <li class="event__offer">
-          <span class="event__offer-title">No additional offers</span>
-        </li>
+        ${createOfferTemplate(title, price)}
       </ul>
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>

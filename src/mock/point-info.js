@@ -24,17 +24,13 @@ export const generateEvent = () => ({
     basePrice: 1100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z'
+  },
+  offerByType: {
+    type: 'taxi',
+    offer: {
+      id: 1,
+      title: 'Upgrade to a business class',
+      price: 120
+    }
   }
 });
-
-export const generateEventOffers = () => (
-  {
-    type: ['taxi','bus', 'train', 'ship', 'drive', 'flight',
-      'check-in', 'sightseeing', 'restaurant'],
-    offers: {
-      id: 1,
-      title: ['Add luggage', 'Switch to comfort',
-        'Rent a car', 'Book tickets'],
-      price: [100, 150, 200]
-    }
-  });
