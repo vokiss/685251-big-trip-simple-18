@@ -1,14 +1,20 @@
 import {createElement} from '../render.js';
 import { humanizeTaskDueDate } from '../util.js';
 
-const createOfferTemplate = (title, price) =>
-  `
+const createOffersTemplate = (offerCount ,title, price) => {
+  const offerTemplate = `
      <li class="event__offer">
          <span class="event__offer-title">${title}</span>
          +€&nbsp;
          <span class="event__offer-price">${price}</span>
       </li>
 `;
+  let offers = '';
+  for (let i = 0; i < offerCount; i++) {
+    offers += offerTemplate;
+  }
+  return offers;
+};
 
 const tripEventElement = (event) => {
   const {name, type, dateFrom, dateTo} = event.destination;
@@ -39,7 +45,7 @@ const tripEventElement = (event) => {
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
-        ${createOfferTemplate(title, price)}
+        ${createOffersTemplate(3 ,title, price)}
       </ul>
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>

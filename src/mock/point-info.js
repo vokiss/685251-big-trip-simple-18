@@ -12,12 +12,32 @@ const generateName = () => {
   return names[randomIndex];
 };
 
+const generateOfferOption = () => {
+  const names = ['Upgrade1', 'Upgrade2', 'Upgrade3', 'Upgrade4', 'Upgrade5'];
+  const randomIndex = getRandomInteger(0, names.length - 1);
+  return names[randomIndex];
+};
+
+// const offerByType = {
+//   type: 'taxi',
+//   offersByType: {id:1, price: 120, title: 'Upgrade'}
+// };
+
+const offers = new Map();
+const offerByType1 = {offerByType:1};
+offers.set( offerByType1, {
+  type: generateType(),
+  offer: {id: 1, price: 120 * 1, title: generateOfferOption()}
+});
+console.log(offers);
+
+
 export const generateEvent = () => ({
   destination:{
     name: generateName(),
     description: 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
     pictures: {
-      src: `http://picsum.photos/300/200?r=${getRandomInteger(0, 1)}`,
+      src: `http://picsum.photos/248/152?r=${getRandomInteger(0,5)}`,
       description: 'Chamonix parliament building'
     },
     type: generateType(),
@@ -25,12 +45,7 @@ export const generateEvent = () => ({
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z'
   },
-  offerByType: {
-    type: 'taxi',
-    offer: {
-      id: 1,
-      title: 'Upgrade to a business class',
-      price: 120
-    }
-  }
-});
+  offerByType: offers.get(offerByType1)
+}
+);
+
