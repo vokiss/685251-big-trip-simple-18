@@ -1,9 +1,8 @@
 import {createElement} from '../render.js';
-import { humanizeTaskDueDate } from '../util.js';
 
 const generateOffersTemplate = (count ,type, price, title) => {
   const template = `<div class="event__offer-selector">
-            <input class="event__offer-checkbox  visually-hidden" id="event-offer-${type}-1" type="checkbox" name="event-offer-luggage" checked>
+            <input class="event__offer-checkbox  visually-hidden" id="event-offer-${type}-1" type="checkbox" name="event-offer-luggage" unchecked>
             <label class="event__offer-label" for="event-offer-${type}-1">
               <span class="event__offer-title">${title}</span>
               &plus;&euro;&nbsp;

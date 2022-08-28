@@ -1,7 +1,7 @@
 import {createElement} from '../render.js';
-import { humanizeTaskDueDate } from '../util.js';
+import { humanizeTaskDueDate, getRandomInteger } from '../util.js';
 
-const createOffersTemplate = (offerCount ,title, price) => {
+const createOffersTemplate = (title, price) => {
   const offerTemplate = `
      <li class="event__offer">
          <span class="event__offer-title">${title}</span>
@@ -10,7 +10,7 @@ const createOffersTemplate = (offerCount ,title, price) => {
       </li>
 `;
   let offers = '';
-  for (let i = 0; i < offerCount; i++) {
+  for (let i = 0; i < getRandomInteger(0,6); i++) {
     offers += offerTemplate;
   }
   return offers;
@@ -45,7 +45,7 @@ const tripEventElement = (event) => {
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
-        ${createOffersTemplate(3 ,title, price)}
+        ${createOffersTemplate(title, price)}
       </ul>
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>
