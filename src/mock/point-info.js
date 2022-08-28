@@ -18,19 +18,12 @@ const generateOfferOption = () => {
   return names[randomIndex];
 };
 
-// const offerByType = {
-//   type: 'taxi',
-//   offersByType: {id:1, price: 120, title: 'Upgrade'}
-// };
-
 const offers = new Map();
 const offerByType1 = {offerByType:1};
 offers.set( offerByType1, {
   type: generateType(),
   offer: {id: 1, price: 120 * 1, title: generateOfferOption()}
 });
-console.log(offers);
-
 
 export const generateEvent = () => ({
   destination:{
