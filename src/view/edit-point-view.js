@@ -10,7 +10,7 @@ const generateOffersTemplate = (count ,type, price, title) => {
             </label>
           </div>
           `;
-  let offers = [];
+  let offers = ' ';
   for (let i = 0; i < count; i++) {
     offers += template;
   }

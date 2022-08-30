@@ -1,5 +1,5 @@
 import SortView from '../view/sort-view.js';
-import tripEventView from '../view/trip-event-view.js';
+import TripEventView from '../view/trip-event-view.js';
 import {render} from '../render.js';
 import EmptyListView from '../view/empty-list-view.js';
 import EditPointView from '../view/edit-point-view.js';
@@ -24,7 +24,7 @@ export default class BoardPresenter {
   };
 
   #renderEvent = (event) => {
-    const eventComponent = new tripEventView(event);
+    const eventComponent = new TripEventView(event);
     const editPointView = new EditPointView(event);
 
     const replaceEventToEdit = () => {
