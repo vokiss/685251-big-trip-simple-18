@@ -54,24 +54,26 @@ const tripEventElement = (event) => {
   </li>`
   );};
 
-export default class tripEventView {
+export default class TripEventView {
+  #element = null;
+  #event = null;
   constructor(event) {
-    this.event = event;
+    this.#event = event;
   }
 
-  getTemplate() {
-    return tripEventElement(this.event);
+  get template() {
+    return tripEventElement(this.#event);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
 
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
