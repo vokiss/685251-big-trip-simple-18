@@ -27,6 +27,21 @@ export default class BoardPresenter {
 
   #renderEvent = (event) => {
     const eventComponent = new tripEventView(event);
+    const editPointView = new addPointView(event);
+
+    const replaceEventToEdit = () => {
+      this.#emptyListComponent.element.replaceChild(editPointView.element, eventComponent.element);
+    };
+    const replaceEditToEvent = () => {
+      this.#emptyListComponent.element.replaceChild(eventComponent.element, editPointView.element);
+    };
+    eventComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      replaceEventToEdit();
+    });
+    editPointView.element.querySelector('.event__reset-btn').addEventListener('click', () => {
+      replaceEditToEvent();
+    });
+
     render(eventComponent, this.#emptyListComponent.element);
   };
 }
