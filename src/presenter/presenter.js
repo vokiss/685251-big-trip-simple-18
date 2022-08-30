@@ -20,8 +20,13 @@ export default class BoardPresenter {
     render(new addPointView(this.#eventList[0]), this.#emptyListComponent.element);
 
     for (let i = 0; i < this.#eventList.length; i++) {
-      render(new tripEventView(this.#eventList[i]), this.#emptyListComponent.element);
+      this.#renderEvent(this.#eventList[i]);
     }
 
+  };
+
+  #renderEvent = (event) => {
+    const eventComponent = new tripEventView(event);
+    render(eventComponent, this.#emptyListComponent.element);
   };
 }
