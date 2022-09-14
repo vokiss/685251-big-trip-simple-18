@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { humanizeTaskDueDate, getRandomInteger } from '../util.js';
 
 const createOffersTemplate = (title, price) => {
@@ -54,26 +54,14 @@ const tripEventElement = (event) => {
   </li>`
   );};
 
-export default class TripEventView {
-  #element = null;
+export default class TripEventView extends AbstractView {
   #event = null;
   constructor(event) {
+    super();
     this.#event = event;
   }
 
   get template() {
     return tripEventElement(this.#event);
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }
