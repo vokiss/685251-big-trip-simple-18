@@ -45,22 +45,18 @@ export default class BoardPresenter {
         document.removeEventListener('keydown', onEscKeyDown);
       }
     };
-    eventComponent.element.querySelector('.event__rollup-btn')
-      .addEventListener('click', () => {
-        replaceEventToEdit();
-        document.addEventListener('keydown', onEscKeyDown);
-      });
-    editPointView.element.querySelector('.event__rollup-btn')
-      .addEventListener('click', () => {
-        replaceEditToEvent();
-        document.removeEventListener('keydown', onEscKeyDown);
-      });
-    editPointView.element.querySelector('form')
-      .addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        replaceEditToEvent();
-        document.removeEventListener('keydown', onEscKeyDown);
-      });
+    eventComponent.setClickHandler(() => {
+      replaceEventToEdit();
+      document.addEventListener('keydown', onEscKeyDown);
+    });
+    editPointView.setEditClickHandler(() => {
+      replaceEditToEvent();
+      document.removeEventListener('keydown', onEscKeyDown);
+    });
+    editPointView.setFormSubmitHandler(() => {
+      replaceEditToEvent();
+      document.removeEventListener('keydown', onEscKeyDown);
+    });
 
     render(eventComponent, this.#emptyListComponent.element);
   };
