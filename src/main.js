@@ -1,5 +1,5 @@
+import {render} from './framework/render.js';
 import FilterView from './view/filter-view.js';
-import {render} from './render.js';
 import BoardPresenter from './presenter/presenter.js';
 import EventsModel from './model/points-model.js';
 

@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { humanizeTaskDueDate, getRandomInteger } from '../util.js';
 
 const createOffersTemplate = (title, price) => {
@@ -54,10 +54,10 @@ const tripEventElement = (event) => {
   </li>`
   );};
 
-export default class TripEventView {
-  #element = null;
+export default class TripEventView extends AbstractView {
   #event = null;
   constructor(event) {
+    super();
     this.#event = event;
   }
 
@@ -65,15 +65,13 @@ export default class TripEventView {
     return tripEventElement(this.#event);
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
+  setClickHandler = (callback) => {
+    this._callback.click = callback;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickHandler);
+  };
 
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
-  }
+  #clickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.click();
+  };
 }
